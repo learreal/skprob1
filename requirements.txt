@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+openpyxl
+pandas
+Flask-Migrate
+Flask-Mail
+itsdangerous
+Werkzeug
+Flask-JSONify
