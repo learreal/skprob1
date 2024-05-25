@@ -7,3 +7,4 @@ Flask-Mail
 itsdangerous
 Werkzeug
 Flask-JSONify
+gunicorn
