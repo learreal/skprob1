@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("static/images/home.jpg"); /* Background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        .welcome {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        .username {
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info-btn, .logout-btn, .sk-officials-btn, .calendar-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .info-btn:hover, .logout-btn:hover, .sk-officials-btn:hover, .calendar-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            Hello <span class="name">{{ name }}</span>! Welcome to your homepage.
+        </div>
+        <div class="actions">
+            <a href="/hello" class="info-btn">Form</a>
+            <a href="/sk_officials" class="sk-officials-btn">View SK Officials</a>
+            <a href="/calendar" class="calendar-btn">View Calendar of Events</a> <!-- New link for calendar -->
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

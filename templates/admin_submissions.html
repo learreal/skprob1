@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submissions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #87bbd7 ;
+            height: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            padding: 10px;
+            border: 1px solid #05242c;
+            text-align: left;
+            color: #f2c864; /* Set the color of the text */
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #05242c;
+            text-align: left;
+            color: #000000; /* Set the color of the text */
+        }
+        th {
+            background-color: #0b4251;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Form Submissions</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Birthdate</th>
+                <th>Residential Address</th>
+                <th>Place of Birth</th>
+                <th>Civil Status</th>
+                <th>Sex</th>
+                <th>Spouse</th>
+                <th>Father</th>
+                <th>Mother</th>
+                <th>Elementary School</th>
+                <th>Elementary Attendance</th>
+                <th>Elementary Honors</th>
+                <th>Secondary School</th>
+                <th>Secondary Attendance</th>
+                <th>Secondary Honors</th>
+                <th>Vocational School</th>
+                <th>Vocational Attendance</th>
+                <th>Vocational Honors</th>
+                <th>College School</th>
+                <th>College Attendance</th>
+                <th>College Honors</th>
+                <th>Graduate School</th>
+                <th>Graduate Attendance</th>
+                <th>Graduate Honors</th>
+                <th>Position Title</th>
+                <th>Department</th>
+                <th>Inclusive Dates</th>
+                <th>Position Title 2</th>
+                <th>Department 2</th>
+                <th>Inclusive Dates 2</th>
+                <th>Top Issue 1</th>
+                <th>Top Issue 2</th>
+                <th>Top Issue 3</th>
+                <th>Top Wish 1</th>
+                <th>Top Wish 2</th>
+                <th>Top Wish 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in form_submissions %}
+            <tr>
+                <td>{{ submission.last_name }}</td>
+                <td>{{ submission.first_name }}</td>
+                <td>{{ submission.middle_name }}</td>
+                <td>{{ submission.birthdate }}</td>
+                <td>{{ submission.residential_address }}</td>
+                <td>{{ submission.place_of_birth }}</td>
+                <td>{{ submission.civil_status }}</td>
+                <td>{{ submission.sex }}</td>
+                <td>{{ submission.spouse }}</td>
+                <td>{{ submission.father }}</td>
+                <td>{{ submission.mother }}</td>
+                <td>{{ submission.elementary_school }}</td>
+                <td>{{ submission.elementary_attendance }}</td>
+                <td>{{ submission.elementary_honors }}</td>
+                <td>{{ submission.secondary_school }}</td>
+                <td>{{ submission.secondary_attendance }}</td>
+                <td>{{ submission.secondary_honors }}</td>
+                <td>{{ submission.vocational_school }}</td>
+                <td>{{ submission.vocational_attendance }}</td>
+                <td>{{ submission.vocational_honors }}</td>
+                <td>{{ submission.college_school }}</td>
+                <td>{{ submission.college_attendance }}</td>
+                <td>{{ submission.college_honors }}</td>
+                <td>{{ submission.graduate_school }}</td>
+                <td>{{ submission.graduate_attendance }}</td>
+                <td>{{ submission.graduate_honors }}</td>
+                <td>{{ submission.position_title }}</td>
+                <td>{{ submission.department }}</td>
+                <td>{{ submission.inclusive_dates }}</td>
+                <td>{{ submission.position_title2 }}</td>
+                <td>{{ submission.department2 }}</td>
+                <td>{{ submission.inclusive_dates2 }}</td>
+                <td>{{ submission.issue1 }}</td>
+                <td>{{ submission.issue2 }}</td>
+                <td>{{ submission.issue3 }}</td>
+                <td>{{ submission.wish1 }}</td>
+                <td>{{ submission.wish2 }}</td>
+                <td>{{ submission.wish3 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

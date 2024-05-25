@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #5187e3;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff58;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Form Submission</h1>
+    <h2>Personal Info</h2>
+    <li>First Name: {{ form_submission.personal_info.first_name }}</li>
+    <li>Middle Name: {{ form_submission.personal_info.middle_name }}</li>
+    <li>Last Name: {{ form_submission.personal_info.last_name }}</li>
+    <p>Birthdate: {{ form_submission.personal_info.birthdate }}</p>
+    <p>Residential Address: {{ form_submission.personal_info.residential_address }}</p>
+    <p>Place of Birth: {{ form_submission.personal_info.place_of_birth }}</p>
+    <p>Civil status: {{ form_submission.personal_info.civil_status }}</p>
+    <p>Sex: {{ form_submission.personal_info.sex }}</p>
+    <!-- Display other personal info fields -->
+
+    <h1>Family Background</h1>
+    <p>Spouse: {{ form_submission.family_background.spouse }}</p>
+    <p>Father: {{ form_submission.family_background.father }}</p>
+    <p>Mother: {{ form_submission.family_background.mother }}</p>
+    <!-- Display other family background -->
+
+    <h1>Educational Attainment</h1>
+    <p>Elementary:
+        School: {{ form_submission.educational_attainment.elementary.school }},
+        Period of Attendance: {{ form_submission.educational_attainment.elementary.period_of_attendance }},
+        Academic Honors Received: {{ form_submission.educational_attainment.elementary.academic_honors }}
+    </p>
+    <p>Secondary:
+        School: {{ form_submission.educational_attainment.secondary.school }},
+        Period of Attendance: {{ form_submission.educational_attainment.secondary.period_of_attendance }},
+        Academic Honors Received: {{ form_submission.educational_attainment.secondary.academic_honors }}
+    </p>
+    <p>Vocational:
+        School: {{ form_submission.educational_attainment.vocational.school }},
+        Period of Attendance: {{ form_submission.educational_attainment.vocational.period_of_attendance }},
+        Academic Honors Received: {{ form_submission.educational_attainment.vocational.academic_honors }}
+    </p>
+    <p>College:
+        School: {{ form_submission.educational_attainment.college.school }},
+        Period of Attendance: {{ form_submission.educational_attainment.college.period_of_attendance }},
+        Academic Honors Received: {{ form_submission.educational_attainment.college.academic_honors }}
+    </p>
+    <p>Graduate: 
+        School: {{ form_submission.educational_attainment.graduate.school }},
+        Period of Attendance: {{ form_submission.educational_attainment.graduate.period_of_attendance }},
+        Academic Honors Received: {{ form_submission.educational_attainment.graduate.academic_honors }}
+    </p>
+    <!-- Display educational attainment -->
+
+    <h1>Work Experience</h1>
+    <p>
+        Position/Title: {{ form_submission.work_experience.position_title }},
+        Department/Agency/Office/Company: {{ form_submission.work_experience.department }},
+        Inclusive Dates: {{ form_submission.work_experience.inclusive_dates }} 
+    </p>
+    <p>
+        Position/Title: {{ form_submission.work_experience.position_title2 }},
+        Department/Agency/Office/Company: {{ form_submission.work_experience.department2 }},
+        Inclusive Dates: {{ form_submission.work_experience.inclusive_dates2 }} 
+    </p>
+
+    <!-- Repeat similar sections for other sections of the form (family background, educational attainment, etc.) -->
+
+    <!-- Example for displaying top issues -->
+    <h2>Top Issues</h2>
+    <ul>
+        {% for issue in form_submission.top_issues %}
+            <li>{{ issue }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Example for displaying top wishes -->
+    <h2>Top Wishes</h2>
+    <ul>
+        {% for wish in form_submission.top_wishes %}
+            <li>{{ wish }}</li>
+        {% endfor %}
+    </ul>
+    <h1>Form Submission Successful</h1>
+    <p>{{ message }}</p>
+    <!-- Add a link to go back to the homepage -->
+    <p>Click <a href="/home">here</a> to go back to the homepage.</p>
+</body>
+</html>
+

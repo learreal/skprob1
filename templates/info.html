@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SK Profiling</title>
+</head>
+<body>
+    <h1>Personal Information</h1>
+    <p>Name: {{ personal_info['name'] }}</p>
+    <p>Birthdate: {{ personal_info['birthdate'] }}</p>
+    <p>Residential Address: {{ personal_info['residential_address'] }}</p>
+    <p>Place of Birth: {{ personal_info['place_of_birth'] }}</p>
+    <p>Civil status: {{ personal_info['civil_status'] }}</p>
+    <p>Sex: {{ personal_info['sex'] }}</p>
+    <!-- Display other personal information -->
+
+    <h1>Family Background</h1>
+    <p>Spouse: {{ family_background['spouse'] }}</p>
+    <p>Father: {{ family_background['father'] }}</p>
+    <p>Mother: {{ family_background['mother'] }}</p>
+    
+    <!-- Display other family background -->
+
+    <h1>Educational Attainment</h1>
+    <p>Elementary:
+        School: {{ educational_attainment['elementary']['school'] }},
+        Period of Attendance: {{ educational_attainment['elementary']['period_of_attendance'] }},
+        Academic Honors Received: {{ educational_attainment['elementary']['academic_honors'] }}
+    </p>
+    <p>Secondary:
+        School: {{ educational_attainment['secondary']['school'] }},
+        Period of Attendance: {{ educational_attainment['secondary']['period_of_attendance'] }},
+        Academic Honors Received: {{ educational_attainment['secondary']['academic_honors'] }}
+    </p>
+    <p>Vocational:
+        School: {{ educational_attainment['vocational']['school'] }},
+        Period of Attendance: {{ educational_attainment['vocational']['period_of_attendance'] }},
+        Academic Honors Received: {{ educational_attainment['vocational']['academic_honors'] }}
+    </p>
+    <p>College:
+        School: {{ educational_attainment['college']['school'] }},
+        Period of Attendance: {{ educational_attainment['college']['period_of_attendance'] }},
+        Academic Honors Received: {{ educational_attainment['college']['academic_honors'] }}
+    </p>
+    <p>Graduate: 
+        School: {{ educational_attainment['graduate']['school'] }},
+        Period of Attendance: {{ educational_attainment['graduate']['period_of_attendance'] }},
+        Academic Honors Received: {{ educational_attainment['graduate']['academic_honors'] }}
+    </p>
+    <!-- Display educational attainment -->
+
+    <h1>Work Experience</h1>
+    <p>
+        Position/Title:{{ work_experience['position_title'] }}
+        Department/Agency/Office/Company:{{ work_experience['department'] }}
+        Inclusive Dates:{{ work_experience['inclusive_dates'] }} 
+    </p>
+    <p>
+        Position/Title:{{ work_experience['position_title2'] }}
+        Department/Agency/Office/Company:{{ work_experience['department2'] }}
+        Inclusive Dates:{{ work_experience['inclusive_dates2'] }} 
+    </p>
+    <!-- Display work experience -->
+
+    <h1>Top 3 Issues</h1>
+    {% for issue in top_issues %}
+    <p>{{ issue }}</p>
+    {% endfor %}
+
+    <h1>Top 3 Wishes to be Implemented</h1>
+    {% for wish in top_wishes %}
+    <p>{{ wish }}</p>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SK Profiling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #107896;
+        }
+        form {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #3c6478;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffe4e4;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .col {
+            flex: 1;
+            min-width: 150px;
+        }
+        .form-control {
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('form') }}" method="post">
+        <h2>I. PERSONAL INFORMATION</h2>
+        <p>Note: If you have no information to input, please enter "None".</p>
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="First Name" value="{{ existing_data.first_name if existing_data else '' }}">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="middle_name" name="middle_name" required placeholder="Middle Name" value="{{ existing_data.middle_name if existing_data else '' }}">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Last Name" value="{{ existing_data.last_name if existing_data else '' }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="birthdate">Birthdate</label>
+            </div>
+            <div class="col">
+                <select class="form-control" id="birthdate_month" name="birthdate_month" required>
+                    <option value="" disabled selected>Month</option>
+                    {% for month in range(1, 13) %}
+                        <option value="{{ '%02d' % month }}" {% if existing_data and existing_data.birthdate_month == '%02d' % month %}selected{% endif %}>
+                            {{ ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month-1] }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" id="birthdate_day" name="birthdate_day" min="1" max="31" required placeholder="Day" value="{{ existing_data.birthdate_day if existing_data else '' }}">
+            </div>
+            <div class="col">
+                <select class="form-control" id="birthdate_year" name="birthdate_year" required>
+                    <option value="" disabled selected>Year</option>
+                    {% for year in range(2000, 2010) %}
+                        <option value="{{ year }}" {% if existing_data and existing_data.birthdate_year == year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <label for="sex">Sex :</label>
+            </div>
+            <div class="col">
+                <select class="form-control" id="sex" name="sex" required>
+                    <option value="" disabled selected>Select sex</option>
+                    <option value="Male" {% if existing_data and existing_data.sex == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if existing_data and existing_data.sex == 'Female' %}selected{% endif %}>Female</option>
+                </select>
+            </div>
+        </div>
+        <label>Residential Address:</label>
+        <input type="text" name="residential_address" value="{{ existing_data.residential_address if existing_data else '' }}" required>
+        <label>Place of Birth:</label>
+        <input type="text" name="place_of_birth" value="{{ existing_data.place_of_birth if existing_data else '' }}" required>
+        <label>Civil Status:</label>
+        <input type="text" name="civil_status" value="{{ existing_data.civil_status if existing_data else '' }}" required>
+        
+        <h2>II. FAMILY BACKGROUND</h2>
+        <label>Spouse:</label>
+        <input type="text" name="spouse" value="{{ existing_data.spouse if existing_data else '' }}" required>
+        <label>Father:</label>
+        <input type="text" name="father" value="{{ existing_data.father if existing_data else '' }}" required>
+        <label>Mother:</label>
+        <input type="text" name="mother" value="{{ existing_data.mother if existing_data else '' }}" required>
+        
+        <h2>III. EDUCATIONAL ATTAINMENT</h2>
+        <table>
+            <tr>
+                <th>Level</th>
+                <th>School</th>
+                <th>Period of Attendance</th>
+                <th>Academic Honors Received</th>
+            </tr>
+            <tr>
+                <td>Elementary:</td>
+                <td><input type="text" name="elementary_school" value="{{ existing_data.elementary_school if existing_data else '' }}"></td>
+                <td><input type="text" name="elementary_attendance" value="{{ existing_data.elementary_attendance if existing_data else '' }}"></td>
+                <td><input type="text" name="elementary_honors" value="{{ existing_data.elementary_honors if existing_data else '' }}"></td>
+            </tr>
+            <tr>
+                <td>Secondary:</td>
+                <td><input type="text" name="secondary_school" value="{{ existing_data.secondary_school if existing_data else '' }}"></td>
+                <td><input type="text" name="secondary_attendance" value="{{ existing_data.secondary_attendance if existing_data else '' }}"></td>
+                <td><input type="text" name="secondary_honors" value="{{ existing_data.secondary_honors if existing_data else '' }}"></td>
+            </tr>
+            <tr>
+                <td>Vocational:</td>
+                <td><input type="text" name="vocational_school" value="{{ existing_data.vocational_school if existing_data else '' }}"></td>
+                <td><input type="text" name="vocational_attendance" value="{{ existing_data.vocational_attendance if existing_data else '' }}"></td>
+                <td><input type="text" name="vocational_honors" value="{{ existing_data.vocational_honors if existing_data else '' }}"></td>
+            </tr>
+            <tr>
+                <td>College:</td>
+                <td><input type="text" name="college_school" value="{{ existing_data.college_school if existing_data else '' }}"></td>
+                <td><input type="text" name="college_attendance" value="{{ existing_data.college_attendance if existing_data else '' }}"></td>
+                <td><input type="text" name="college_honors" value="{{ existing_data.college_honors if existing_data else '' }}"></td>
+            </tr>
+            <tr>
+                <td>Graduate:</td>
+                <td><input type="text" name="graduate_school" value="{{ existing_data.graduate_school if existing_data else '' }}"></td>
+                <td><input type="text" name="graduate_attendance" value="{{ existing_data.graduate_attendance if existing_data else '' }}"></td>
+                <td><input type="text" name="graduate_honors" value="{{ existing_data.graduate_honors if existing_data else '' }}"></td>
+            </tr>
+        </table>
+
+        <h2>IV. WORK EXPERIENCE</h2>
+        <table>
+            <tr>
+                <th>Position/Title</th>
+                <th>Department/Agency/Office/Company</th>
+                <th>Inclusive Dates</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="position_title" value="{{ existing_data.position_title if existing_data else '' }}"></td>
+                <td><input type="text" name="department" value="{{ existing_data.department if existing_data else '' }}"></td>
+                <td><input type="text" name="inclusive_dates" value="{{ existing_data.inclusive_dates if existing_data else '' }}"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="position_title2" value="{{ existing_data.position_title2 if existing_data else '' }}"></td>
+                <td><input type="text" name="department2" value="{{ existing_data.department2 if existing_data else '' }}"></td>
+                <td><input type="text" name="inclusive_dates2" value="{{ existing_data.inclusive_dates2 if existing_data else '' }}"></td>
+            </tr>
+        </table>
+
+        <h2>V. TOP 3 ISSUES</h2>
+        <input type="text" name="issue1" value="{{ existing_data.issue1 if existing_data else '' }}">
+        <input type="text" name="issue2" value="{{ existing_data.issue2 if existing_data else '' }}">
+        <input type="text" name="issue3" value="{{ existing_data.issue3 if existing_data else '' }}">
+        
+        <h2>VI. TOP 3 WISHES TO BE IMPLEMENTED</h2>
+        <input type="text" name="wish1" value="{{ existing_data.wish1 if existing_data else '' }}">
+        <input type="text" name="wish2" value="{{ existing_data.wish2 if existing_data else '' }}">
+        <input type="text" name="wish3" value="{{ existing_data.wish3 if existing_data else '' }}">
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

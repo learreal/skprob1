@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Calendar</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #317773;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calendar-container {
+            background-color: #e2d1f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden; /* Hide overflowing content */
+        }
+
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calendar th,
+        .calendar td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .calendar th {
+            background-color: #f2f2f2;
+        }
+
+        .calendar td {
+            background-color: #fff;
+        }
+
+        .calendar .today {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Display existing events with options to edit or delete -->
+    <div class="calendar-container">
+        <h1>Admin Calendar</h1>
+        
+        <!-- Form to add a new event -->
+        <form action="/admin/calendar" method="POST" style="display: flex; flex-wrap: wrap;">
+            <div style="flex: 1; margin-right: 10px;">
+                <label for="event_name">Event Name:</label>
+                <input type="text" id="event_name" name="event_name" required>
+            </div>
+        
+            <div style="flex: 1; margin-right: 10px;">
+                <label for="event_date">Event Date:</label>
+                <input type="date" id="event_date" name="event_date" required>
+            </div>
+        
+            <div style="flex: 2;">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+        
+            <button type="submit">Add Event</button>
+        </form>
+
+        <!-- Display existing events with options to edit or delete -->
+        <ul>
+            {% for event in events %}
+                <li>
+                    {{ event.event_name }} - {{ event.event_date }} 
+                    <!-- Form for deleting events -->
+                    
+                    <a href="/admin/calendar/edit/{{ event.id }}">Edit</a> 
+                    <form action="{{ url_for('delete_event', event_id=event.id) }}" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/admin_home">Go back to Admin Home</a>
+    </div>
+
+</body>
+</html>
